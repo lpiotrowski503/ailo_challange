@@ -25,6 +25,9 @@
     "admin-e2e": {
       "tags": [],
       "implicitDependencies": ["admin"]
+    },
+    "ui": {
+      "tags": []
     }
   }
 }

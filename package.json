@@ -24,7 +24,9 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
+    "pug-w": "pug src -P -w",
+    "dev": "run-p pug-w start"
   },
   "private": true,
   "dependencies": {
@@ -41,25 +43,27 @@
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
-    "@nrwl/angular": "^9.2.3",
-    "@nrwl/workspace": "9.2.3",
-    "@types/node": "~8.9.4",
-    "dotenv": "6.2.0",
-    "eslint": "6.8.0",
-    "prettier": "1.19.1",
-    "ts-node": "~7.0.0",
-    "tslint": "~6.0.0",
-    "typescript": "~3.8.3",
+    "@angular-devkit/build-angular": "0.901.0",
     "@angular/compiler-cli": "^9.1.0",
     "@angular/language-service": "^9.1.0",
-    "@angular-devkit/build-angular": "0.901.0",
-    "codelyzer": "~5.0.1",
-    "jest-preset-angular": "8.1.2",
+    "@nrwl/angular": "^9.2.3",
+    "@nrwl/cypress": "9.2.3",
     "@nrwl/jest": "9.2.3",
-    "jest": "25.2.3",
+    "@nrwl/workspace": "9.2.3",
     "@types/jest": "25.1.4",
-    "ts-jest": "25.2.1",
+    "@types/node": "~8.9.4",
+    "codelyzer": "~5.0.1",
     "cypress": "^4.1.0",
-    "@nrwl/cypress": "9.2.3"
+    "dotenv": "6.2.0",
+    "eslint": "6.8.0",
+    "jest": "25.2.3",
+    "jest-preset-angular": "8.1.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "1.19.1",
+    "pug-cli": "^1.0.0-alpha6",
+    "ts-jest": "25.2.1",
+    "ts-node": "~7.0.0",
+    "tslint": "~6.0.0",
+    "typescript": "~3.8.3"
   }
 }
