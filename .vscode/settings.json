@@ -1,0 +1,7 @@
+{
+  "files.exclude": {
+    "**/*.html": false,
+    "**/*.spec*": true,
+    "**/node_modules": true
+  }
+}
