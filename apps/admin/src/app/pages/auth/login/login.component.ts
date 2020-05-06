@@ -25,14 +25,12 @@ export class LoginComponent {
     ])
   };
 
-  public loginForm: FormGroup;
+  public loginForm: FormGroup = new FormGroup(this.controls);
 
   constructor(private auth: AuthService, private router: Router) {
     if (this.auth.getToken()) {
       this.router.navigate(['/']);
     }
-
-    this.loginForm = new FormGroup(this.controls);
   }
 
   public onLogin(): void {

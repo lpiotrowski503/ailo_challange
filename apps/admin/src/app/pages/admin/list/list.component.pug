@@ -18,24 +18,29 @@ section.list
           ng-container(
             *ngIf = 'merchants.length; else empty'
             )
-            ul
+            flex-row.list__items__header
+              p
+                |Name
+              p
+                |E-mail
+              p
+                |Phone
+            ul.list__items__body
               ng-container(
                 *ngFor = 'let merchant of merchants'
                 )
                 li
-                  p
-                    |{{ merchant.id }}
-                  p
-                    |{{ merchant.name }}
-                  p
-                    |{{ merchant.email }}
-                  p
-                    |{{ merchant.phone }}
+                  flex-row
+                    p
+                      |{{ merchant.name }}
+                    p
+                      |{{ merchant.email }}
+                    p
+                      |{{ merchant.phone }}
           ng-template(
             #empty
             )
             h2
               |Merchants list is empty
-    flex-col
-      aside.list__aside
-        router-outlet
+    aside.list__aside
+      router-outlet

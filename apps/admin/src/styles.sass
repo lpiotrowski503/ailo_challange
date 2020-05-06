@@ -13,7 +13,7 @@ body
 h3, p
   margin: 0
 
-button, label, input, h2, li, a
+button, label, input, h2, li, a, p
   letter-spacing: 2px
   font-family: $defaultFont
 
@@ -32,14 +32,11 @@ button
     font-weight: 500
     text-transform: uppercase
     border-radius: 5px
+    margin: 40px 0
+    padding: 20px 40px
 
     &:hover
         transform: scale(1.01)
-
-  &.login-btn
-    @extend .btn
-    margin: 40px 0
-    padding: 20px 40px
 
   &:focus
     outline: none
@@ -55,7 +52,7 @@ input
     outline: none
     transform: scale(1.01)
 
-  &.login-input
+  &.input
     font-weight: 500
     margin: 0 0 20px 0
     padding: 20px
@@ -65,7 +62,7 @@ input
 label
   font-size: $input__font__size
 
-  &.login-label
+  &.label
     font-weight: 700
     text-transform: uppercase
     margin: 20px 0 10px 0

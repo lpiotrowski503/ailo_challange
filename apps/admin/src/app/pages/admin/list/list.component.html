@@ -6,13 +6,19 @@
       <article class="list__items">
         <ng-container *ngIf="( merchants$ | async ) as merchants">
           <ng-container *ngIf="merchants.length; else empty">
-            <ul>
+            <flex-row class="list__items__header">
+              <p>Name</p>
+              <p>E-mail</p>
+              <p>Phone</p>
+            </flex-row>
+            <ul class="list__items__body">
               <ng-container *ngFor="let merchant of merchants">
                 <li>
-                  <p>{{ merchant.id }}</p>
-                  <p>{{ merchant.name }}</p>
-                  <p>{{ merchant.email }}</p>
-                  <p>{{ merchant.phone }}</p>
+                  <flex-row>
+                    <p>{{ merchant.name }}</p>
+                    <p>{{ merchant.email }}</p>
+                    <p>{{ merchant.phone }}</p>
+                  </flex-row>
                 </li>
               </ng-container>
             </ul>
@@ -23,10 +29,8 @@
         </ng-container>
       </article>
     </flex-col>
-    <flex-col>
-      <aside class="list__aside">
-        <router-outlet></router-outlet>
-      </aside>
-    </flex-col>
+    <aside class="list__aside">
+      <router-outlet></router-outlet>
+    </aside>
   </flex-row>
 </section>

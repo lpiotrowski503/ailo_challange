@@ -1,11 +1,33 @@
-rx-form
-  flex-col
-    label
-      |Name
-    input
-    label
-      |email
-    input
-    label
-      |phone
-    input
+section.add
+  form(
+    (ngSubmit) = 'onAdd()',
+    [formGroup] = 'addForm'
+    )
+    flex-col
+      flex-col
+        label.label
+          |Name
+        input.input(
+          type = 'text',
+          name = 'name',
+          [formControl] = 'controls.name'
+        )
+      flex-col
+        label.label
+          |email
+        input.input(
+          type = 'text',
+          name = 'email',
+          [formControl] = 'controls.email'
+          )
+      flex-col
+        label.label
+          |phone
+        input.input(
+          type = 'tel',
+          name = 'phone',
+          [formControl] = 'controls.phone'
+        )
+      flex-col
+        button.btn
+          |Send

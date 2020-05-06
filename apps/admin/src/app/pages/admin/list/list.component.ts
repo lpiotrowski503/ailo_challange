@@ -14,9 +14,7 @@ export class ListComponent implements OnInit {
     this.merchants$ = this.admin.getMerchants();
   }
 
-  ngOnInit(): void {}
-
-  public onAddViewOpen(): void {
-    console.log('onAddViewOpen');
+  ngOnInit(): void {
+    console.log('init');
   }
 }

@@ -7,15 +7,15 @@
     <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
       <flex-col>
         <flex-col>
-          <label class="login-label">E-mail</label>
-          <input class="login-input" type="text" name="email" [formControl]="controls.email"/>
+          <label class="label">E-mail</label>
+          <input class="input" type="text" name="email" [formControl]="controls.email"/>
         </flex-col>
         <flex-col>
-          <label class="login-label">Password</label>
-          <input class="login-input" type="password" name="password" [formControl]="controls.password"/>
+          <label class="label">Password</label>
+          <input class="input" type="password" name="password" [formControl]="controls.password"/>
         </flex-col>
         <flex-col>
-          <button class="login-btn">login</button>
+          <button class="btn">login</button>
         </flex-col>
       </flex-col>
     </form>

@@ -1,11 +1,22 @@
 
-<rx-form>
-  <flex-col>
-    <label>Name</label>
-    <input/>
-    <label>email</label>
-    <input/>
-    <label>phone</label>
-    <input/>
-  </flex-col>
-</rx-form>
+<section class="add">
+  <form (ngSubmit)="onAdd()" [formGroup]="addForm">
+    <flex-col>
+      <flex-col>
+        <label class="label">Name</label>
+        <input class="input" type="text" name="name" [formControl]="controls.name"/>
+      </flex-col>
+      <flex-col>
+        <label class="label">email</label>
+        <input class="input" type="text" name="email" [formControl]="controls.email"/>
+      </flex-col>
+      <flex-col>
+        <label class="label">phone</label>
+        <input class="input" type="tel" name="phone" [formControl]="controls.phone"/>
+      </flex-col>
+      <flex-col>
+        <button class="btn">Send</button>
+      </flex-col>
+    </flex-col>
+  </form>
+</section>
