@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<section class="list">
+  <flex-row>
+    <flex-col>
+      <nav class="list__navbar"><a class="list__navbar__add" routerLink="/add">Add Merchant<img src="/assets/icons/add.svg" alt="add"></a></nav>
+      <article class="list__items">
+        <ng-container *ngIf="( merchants$ | async ) as merchants">
+          <ng-container *ngIf="merchants.length; else empty">
+            <ul>
+              <ng-container *ngFor="let merchant of merchants">
+                <li>
+                  <p>{{ merchant.id }}</p>
+                  <p>{{ merchant.name }}</p>
+                  <p>{{ merchant.email }}</p>
+                  <p>{{ merchant.phone }}</p>
+                </li>
+              </ng-container>
+            </ul>
+          </ng-container>
+          <ng-template #empty>
+            <h2>Merchants list is empty</h2>
+          </ng-template>
+        </ng-container>
+      </article>
+    </flex-col>
+    <flex-col>
+      <aside class="list__aside">
+        <router-outlet></router-outlet>
+      </aside>
+    </flex-col>
+  </flex-row>
+</section>

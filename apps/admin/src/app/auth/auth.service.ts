@@ -9,21 +9,14 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private _endPoints = {
-    login: '/user/tokens'
-  };
-
   constructor(private http: HttpClient, private router: Router) {}
 
-  public getEndPoint(endPoint: any): string {
-    return `${environment.api}${endPoint}`;
+  public getEndPoint(endPoint: string): string {
+    return `${environment.api}${environment[endPoint]}`;
   }
 
   public login(payload: ILogin): Observable<ILoginResponse> {
-    return this.http.post<ILoginResponse>(
-      this.getEndPoint(this._endPoints.login),
-      payload
-    );
+    return this.http.post<ILoginResponse>(this.getEndPoint('login'), payload);
   }
 
   public saveTokenToLocaleStore(token: string): void {

@@ -1,4 +1,3 @@
-import { AuthService } from './../../auth/auth.service';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -16,45 +15,36 @@ import {
   providedIn: 'root'
 })
 export class AdminService {
-  private _endPoints = {
-    user: '/user/current',
-    merchants: '/manager/merchants'
-  };
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
-
-  public getEndPoint(endPoint: any): string {
-    return `${environment.api}${endPoint}`;
+  public getEndPoint(endPoint: string): string {
+    return `${environment.api}${environment[endPoint]}`;
   }
 
   public getUser(): Observable<IGetUserResponse> {
-    return this.http.get<IGetUserResponse>(
-      this.getEndPoint(this._endPoints.user)
-    );
+    return this.http.get<IGetUserResponse>(this.getEndPoint('user'));
   }
 
   public createMerchant(payload: any): Observable<ICreateMerchantResponse> {
     return this.http.post<ICreateMerchantResponse>(
-      this.getEndPoint(this._endPoints.merchants),
+      this.getEndPoint('merchants'),
       payload
     );
   }
 
   public getMerchants(): Observable<IGetMerchantsResponse> {
-    return this.http.get<IGetMerchantsResponse>(
-      this.getEndPoint(this._endPoints.merchants)
-    );
+    return this.http.get<IGetMerchantsResponse>(this.getEndPoint('merchants'));
   }
 
   public getMerchant(id: string): Observable<IGetMerchantResponse> {
     return this.http.get<IGetMerchantResponse>(
-      `${this.getEndPoint(this._endPoints.merchants)}/${id}`
+      `${this.getEndPoint('merchants')}/${id}`
     );
   }
 
   public updateMerchant(id: string, payload: any): Observable<null> {
     return this.http.put<null>(
-      `${this.getEndPoint(this._endPoints.merchants)}/${id}`,
+      `${this.getEndPoint('merchants')}/${id}`,
       payload
     );
   }
@@ -64,14 +54,12 @@ export class AdminService {
     payload: IUpdateMerchantPasswordPayload
   ): Observable<IUpdateMerchantPasswordResponse> {
     return this.http.put<IUpdateMerchantPasswordResponse>(
-      `${this.getEndPoint(this._endPoints.merchants)}/${id}/password`,
+      `${this.getEndPoint('merchants')}/${id}/password`,
       payload
     );
   }
 
   public deleteMerchant(id: string): Observable<null> {
-    return this.http.delete<null>(
-      `${this.getEndPoint(this._endPoints.merchants)}/${id}`
-    );
+    return this.http.delete<null>(`${this.getEndPoint('merchants')}/${id}`);
   }
 }

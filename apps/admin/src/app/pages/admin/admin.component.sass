@@ -1,13 +1,69 @@
 button
-    color: gold
-    background: #333
-    font-weight: 700
-    text-transform: uppercase
-    font-size: 20px
-    padding: 20px 40px
-    border-radius: 30px
     cursor: pointer
     transition: all 0.3s
 
+    img
+      height: 30px
+
     &:hover
-        transform: scale(1.1)
+        transform: scale(1.05)
+
+.admin
+  &__header
+    &__navbar
+      display: flex
+      flex-grow: 1
+      justify-content: space-between
+
+      &__user
+        position: relative
+        display: flex
+        margin-left: auto
+
+        .collapse
+          display: none
+
+        &:hover
+          .collapse
+            display: flex
+
+        &__avatar
+          height: 60px
+          padding: 20px
+          cursor: pointer
+
+        &__dropdown
+          display: flex
+          flex-direction: column
+          position: absolute
+          top: 100%
+          right: 0
+          min-width: 400px
+          overflow: hidden
+          box-shadow: 0 0 15px -5px black
+
+          &__profile
+            background-color: #a8a7ae
+            padding: 20px 40px
+            border-left: 1px solid
+            border-bottom: 1px solid
+
+            li
+              display: flex
+              padding: 20px 0
+
+              h3
+                margin-bottom: 10px
+
+            li:not(.logout)
+              flex-direction: column
+
+            .logout
+              justify-content: space-between
+              align-items: center
+
+      &__back
+        height: 60px
+        width: 60px
+        padding: 20px
+        cursor: pointer

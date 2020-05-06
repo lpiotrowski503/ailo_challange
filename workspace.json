@@ -21,13 +21,8 @@
             "polyfills": "apps/admin/src/polyfills.ts",
             "tsConfig": "apps/admin/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/admin/src/favicon.ico",
-              "apps/admin/src/assets"
-            ],
-            "styles": [
-              "apps/admin/src/styles.sass"
-            ],
+            "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
+            "styles": ["apps/admin/src/styles.sass"],
             "scripts": []
           },
           "configurations": {
@@ -85,10 +80,7 @@
               "apps/admin/tsconfig.app.json",
               "apps/admin/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/admin/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/admin/**"]
           }
         },
         "test": {
@@ -123,13 +115,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/admin-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/admin-e2e/**"
-            ]
+            "tsConfig": ["apps/admin-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/admin-e2e/**"]
           }
         }
       }
@@ -147,10 +134,7 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui/**"]
           }
         },
         "test": {
@@ -166,6 +150,38 @@
       "schematics": {
         "@nrwl/angular:component": {
           "style": "sass"
+        }
+      }
+    },
+    "rx-form": {
+      "projectType": "library",
+      "root": "libs/rx-form",
+      "sourceRoot": "libs/rx-form/src",
+      "prefix": "nx",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/rx-form/tsconfig.lib.json",
+              "libs/rx-form/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/rx-form/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/rx-form/jest.config.js",
+            "tsConfig": "libs/rx-form/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/rx-form/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       }
     }

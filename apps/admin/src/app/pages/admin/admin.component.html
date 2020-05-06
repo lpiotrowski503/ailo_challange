@@ -1,11 +1,33 @@
 
-<nx-header>
-  <button (click)="onLogout()">logout</button>
-</nx-header>
-<flex-row>
-  <nx-navbar></nx-navbar>
-  <nx-content>
-    <router-outlet></router-outlet>
-  </nx-content>
-</flex-row>
-<nx-footer></nx-footer>
+<section class="admin">
+  <nx-header class="admin__header">
+    <nav class="admin__header__navbar">
+      <ng-container *ngIf="canShowBackIcon()">
+        <div class="admin__header__navbar__back"><a routerLink="/"><img src="/assets/icons/back.svg" alt="back"/></a></div>
+      </ng-container>
+      <div class="admin__header__navbar__user" *ngIf="( user$ | async ) as user"><img class="admin__header__navbar__user__avatar" src="/assets/icons/avatar.svg" alt="avatar"/>
+        <div class="admin__header__navbar__user__dropdown collapse">
+          <ul class="admin__header__navbar__user__dropdown__profile">
+            <li>
+              <h3>Organization:</h3>
+              <p>{{ user.manager.organization }}</p>
+            </li>
+            <li>
+              <h3>Email:</h3>
+              <p>{{ user.email}}</p>
+            </li>
+            <li class="logout">
+              <h3>Logout</h3>
+              <button (click)="onLogout()"><img src="/assets/icons/logout.svg" alt="logout"/></button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </nx-header>
+  <flex-row class="admin__container">
+    <nx-content class="admin__container__content">
+      <router-outlet></router-outlet>
+    </nx-content>
+  </flex-row>
+</section>

@@ -1,4 +1,31 @@
-button(
-  (click)='onLogin(test)'
-  )
-  |login
+flex-row.login
+  header.login__header
+    h2
+      |Log
+      span
+        |in
+  aside.login__aside
+    form(
+      (ngSubmit) = 'onLogin()',
+      [formGroup] = 'loginForm'
+      )
+      flex-col
+        flex-col
+          label.login-label
+            |E-mail
+          input.login-input(
+            type = 'text',
+            name = 'email',
+            [formControl] = 'controls.email'
+            )
+        flex-col
+          label.login-label
+            |Password
+          input.login-input(
+            type = 'password'
+            name = 'password',
+            [formControl] = 'controls.password'
+          )
+        flex-col
+          button.login-btn
+            |login

@@ -1,10 +1,77 @@
+@import './assets/styles/colors.sass'
+@import './assets/styles/fonts.sass'
+
+$default__font__size: 14px
+$button__font__size: 18px
+$label__font__size: 18px
+$input__font__size: 18px
+
 body
   padding: 0
   margin: 0
 
+h3, p
+  margin: 0
+
+button, label, input, h2, li, a
+  letter-spacing: 2px
+  font-family: $defaultFont
+
+a
+  text-decoration: none
+
 button
   border: none
   background-color: transparent
+  font-size: $button__font__size
+  padding: 0
+  transition: all 0.3s
+  cursor: pointer
+
+  &.btn
+    font-weight: 500
+    text-transform: uppercase
+    border-radius: 5px
+
+    &:hover
+        transform: scale(1.01)
+
+  &.login-btn
+    @extend .btn
+    margin: 40px 0
+    padding: 20px 40px
 
   &:focus
     outline: none
+
+input
+  background-color: transparent
+  border: none
+  font-size: $input__font__size
+  transition: all 0.3s
+  cursor: pointer
+
+  &:focus
+    outline: none
+    transform: scale(1.01)
+
+  &.login-input
+    font-weight: 500
+    margin: 0 0 20px 0
+    padding: 20px
+    border-radius: 5px
+
+
+label
+  font-size: $input__font__size
+
+  &.login-label
+    font-weight: 700
+    text-transform: uppercase
+    margin: 20px 0 10px 0
+    min-width: 400px
+
+ul
+  margin: 0
+  list-style: none
+  padding: 0

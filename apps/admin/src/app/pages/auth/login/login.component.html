@@ -1,2 +1,23 @@
 
-<button (click)="onLogin(test)">login</button>
+<flex-row class="login">
+  <header class="login__header">
+    <h2>Log<span>in</span></h2>
+  </header>
+  <aside class="login__aside">
+    <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+      <flex-col>
+        <flex-col>
+          <label class="login-label">E-mail</label>
+          <input class="login-input" type="text" name="email" [formControl]="controls.email"/>
+        </flex-col>
+        <flex-col>
+          <label class="login-label">Password</label>
+          <input class="login-input" type="password" name="password" [formControl]="controls.password"/>
+        </flex-col>
+        <flex-col>
+          <button class="login-btn">login</button>
+        </flex-col>
+      </flex-col>
+    </form>
+  </aside>
+</flex-row>

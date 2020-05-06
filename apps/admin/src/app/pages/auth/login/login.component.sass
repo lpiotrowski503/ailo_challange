@@ -1,22 +1,50 @@
-\:host
-    display: flex
-    justify-content: center
-    align-items: center
-    height: 100vh
-    width: 100vw
-    background-color: gold
+@import '../../../../assets/styles/colors.sass'
 
+\:host
+  display: flex
+  height: 100vh
+  width: 100vw
+  background-color: gold
 
 button
-    color: gold
-    background: #333
-    font-weight: 700
-    text-transform: uppercase
-    font-size: 20px
-    padding: 20px 40px
-    border-radius: 30px
-    cursor: pointer
-    transition: all 0.3s
+  color: $button__color
+  background: $button__background__color
+  box-shadow: 0 10px 15px 0 $button__shadow__color
 
-    &:hover
-        transform: scale(1.1)
+input
+  color: $input__color
+  background-color: $input__background__color
+  border-bottom: 4px solid $input__border__color
+  box-shadow: 0 10px 15px 0 $input__shadow__color
+
+  &:focus
+    background-color: #fff
+
+
+.login
+  display: flex
+  flex-grow: 1
+
+  &__header
+    display: flex
+    flex-grow: 7
+    justify-content: center
+    align-items: center
+    background-color: $special__color
+    box-shadow: 0 0 10px 0 $input__shadow__color
+
+    h2
+      color: $default__color
+      font-size: 100px
+      font-weight: 100
+
+      span
+        background-color: $secondary__color
+        color: $special__color
+        font-weight: 800
+
+  &__aside
+    display: flex
+    flex-grow: 1
+    justify-content: center
+    align-items: center
