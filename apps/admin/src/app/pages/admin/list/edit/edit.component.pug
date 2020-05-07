@@ -1,0 +1,33 @@
+section.edit
+  form(
+    (ngSubmit) = 'onEdit()',
+    [formGroup] = 'editForm'
+    )
+    flex-col
+      flex-col
+        label.label
+          |Name
+        input.input(
+          type = 'text',
+          name = 'name',
+          [formControl] = 'controls.name'
+        )
+      flex-col
+        label.label
+          |email
+        input.input(
+          type = 'text',
+          name = 'email',
+          [formControl] = 'controls.email'
+          )
+      flex-col
+        label.label
+          |phone
+        input.input(
+          type = 'tel',
+          name = 'phone',
+          [formControl] = 'controls.phone'
+        )
+      flex-col
+        button.btn
+          |Send

@@ -10,14 +10,18 @@
               <p>Name</p>
               <p>E-mail</p>
               <p>Phone</p>
+              <p>Actions</p>
             </flex-row>
             <ul class="list__items__body">
               <ng-container *ngFor="let merchant of merchants">
                 <li>
-                  <flex-row>
+                  <flex-row class="flex-y-center">
                     <p>{{ merchant.name }}</p>
                     <p>{{ merchant.email }}</p>
                     <p>{{ merchant.phone }}</p>
+                    <flex-row class="actions"><a routerLink="{{'/change-password/' + merchant.id }}"><img src="/assets/icons/change.svg" alt="change password"></a><a routerLink="{{'/edit/' + merchant.id }}"><img src="/assets/icons/edit.svg" alt="edit"></a>
+                      <button (click)="onRemove(merchant.id)"><img src="/assets/icons/remove.svg" alt="delete"></button>
+                    </flex-row>
                   </flex-row>
                 </li>
               </ng-container>

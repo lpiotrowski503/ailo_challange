@@ -4,6 +4,7 @@ import { ListComponent } from './list/list.component';
 import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ChangePasswordComponent } from './list/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
           {
             path: 'edit/:id',
             component: EditComponent
+          },
+          {
+            path: 'change-password/:id',
+            component: ChangePasswordComponent
           }
         ]
       }

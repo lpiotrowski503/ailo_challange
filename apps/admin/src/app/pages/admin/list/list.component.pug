@@ -25,18 +25,42 @@ section.list
                 |E-mail
               p
                 |Phone
+              p
+                |Actions
             ul.list__items__body
               ng-container(
                 *ngFor = 'let merchant of merchants'
                 )
                 li
-                  flex-row
+                  flex-row.flex-y-center
                     p
                       |{{ merchant.name }}
                     p
                       |{{ merchant.email }}
                     p
                       |{{ merchant.phone }}
+                    flex-row.actions
+                      a(
+                        routerLink = `{{'/change-password/' + merchant.id }}`
+                        )
+                        img(
+                          src = '/assets/icons/change.svg',
+                          alt = 'change password'
+                          )
+                      a(
+                        routerLink = `{{'/edit/' + merchant.id }}`
+                        )
+                        img(
+                          src = '/assets/icons/edit.svg',
+                          alt = 'edit'
+                          )
+                      button(
+                        (click) = 'onRemove(merchant.id)'
+                        )
+                        img(
+                          src = '/assets/icons/remove.svg',
+                          alt = 'delete'
+                          )
           ng-template(
             #empty
             )
