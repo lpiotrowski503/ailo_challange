@@ -1,8 +1,9 @@
 import { AdminService } from './../admin.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { EventBusService } from 'src/app/core/services/event-bus.service';
+import { EventBusService } from '@core/services/event-bus.service';
 import { Router } from '@angular/router';
+import { IGetMerchantsResponse } from '../admin.interface';
 
 @Component({
   selector: 'nx-list',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./list.component.sass']
 })
 export class ListComponent implements OnInit {
-  public merchants$: Observable<any>;
+  public merchants$: Observable<IGetMerchantsResponse>;
 
   constructor(
     private admin: AdminService,

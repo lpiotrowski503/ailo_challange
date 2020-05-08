@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../../admin.service';
-import { EventBusService } from 'src/app/core/services/event-bus.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { patterns } from '@utils/utils';
 
 @Component({
   selector: 'nx-change-password',
@@ -10,13 +10,9 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   styleUrls: ['./change-password.component.sass']
 })
 export class ChangePasswordComponent implements OnInit {
-  private _patterns = {
-    password: /^\w{6,72}$/
-  };
-
   public controls = {
     password: new FormControl('', [
-      Validators.pattern(this._patterns.password),
+      Validators.pattern(patterns.password),
       Validators.required
     ])
   };

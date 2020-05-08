@@ -1,6 +1,6 @@
 section.admin
   nx-header.admin__header
-    nav.admin__header__navbar
+    flex-row.admin__header__navbar
       ng-container(
         *ngIf = 'canShowBackIcon()'
         )
@@ -15,11 +15,11 @@ section.admin
       div.admin__header__navbar__user(
         *ngIf = '( user$ | async ) as user'
         )
-        img.admin__header__navbar__user__avatar(
+        img.admin__header__navbar__user__avatar.action(
           src = '/assets/icons/avatar.svg',
           alt = 'avatar'
           )
-        div.admin__header__navbar__user__dropdown.collapse
+        flex-col.admin__header__navbar__user__dropdown.collapse
           ul.admin__header__navbar__user__dropdown__profile
             li
               h3

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ILogin, ILoginResponse } from '../pages/admin/admin.interface';
+import { ILoginPayload, ILoginResponse } from '../pages/admin/admin.interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -15,7 +15,7 @@ export class AuthService {
     return `${environment.api}${environment[endPoint]}`;
   }
 
-  public login(payload: ILogin): Observable<ILoginResponse> {
+  public login(payload: ILoginPayload): Observable<ILoginResponse> {
     return this.http.post<ILoginResponse>(this.getEndPoint('login'), payload);
   }
 

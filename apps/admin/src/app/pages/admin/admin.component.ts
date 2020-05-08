@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { AdminService } from './admin.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
+import { IGetUserResponse } from './admin.interface';
 
 @Component({
   selector: 'nx-admin',
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./admin.component.sass']
 })
 export class AdminComponent implements OnInit {
-  public user$: Observable<any>;
+  public user$: Observable<IGetUserResponse>;
 
   constructor(
     private admin: AdminService,

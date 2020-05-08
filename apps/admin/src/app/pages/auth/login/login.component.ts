@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { patterns } from '@utils/utils';
 
 @Component({
   selector: 'nx-login',
@@ -9,28 +10,21 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent {
-  private _patterns = {
-    email: /^([a-z\d.-_]+)@([a-z\d-_]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
-    password: /^\w{6,72}$/
-  };
-
   public controls = {
     email: new FormControl('', [
-      Validators.pattern(this._patterns.email),
+      Validators.pattern(patterns.email),
       Validators.required
     ]),
     password: new FormControl('', [
-      Validators.pattern(this._patterns.password),
+      Validators.pattern(patterns.password),
       Validators.required
     ])
   };
 
-  public loginForm: FormGroup = new FormGroup(this.controls);
+  public loginForm = new FormGroup(this.controls);
 
   constructor(private auth: AuthService, private router: Router) {
-    if (this.auth.getToken()) {
-      this.router.navigate(['/']);
-    }
+    if (this.auth.getToken()) this.router.navigate(['/']);
   }
 
   public onLogin(): void {

@@ -1,18 +1,12 @@
+@import '../../../assets/styles/colors.sass'
+
 button
-    cursor: pointer
-    transition: all 0.3s
-
-    img
-      height: 30px
-
-    &:hover
-        transform: scale(1.05)
+  img
+    height: 30px
 
 .admin
   &__header
     &__navbar
-      display: flex
-      flex-grow: 1
       justify-content: space-between
 
       &__user
@@ -30,11 +24,8 @@ button
         &__avatar
           height: 60px
           padding: 20px
-          cursor: pointer
 
         &__dropdown
-          display: flex
-          flex-direction: column
           position: absolute
           top: 100%
           right: 0
@@ -43,10 +34,8 @@ button
           box-shadow: 0 0 15px -5px black
 
           &__profile
-            background-color: #a8a7ae
+            background-color: $page__background__color
             padding: 20px 40px
-            border-left: 1px solid
-            border-bottom: 1px solid
 
             li
               display: flex
@@ -66,4 +55,3 @@ button
         height: 60px
         width: 60px
         padding: 20px
-        cursor: pointer

@@ -19,6 +19,14 @@ button, label, input, h2, li, a, p
 
 a
   text-decoration: none
+  transition: all 0.3s
+  cursor: pointer
+
+  &:hover
+    transform: scale(1.02)
+
+  img
+    @extend .action
 
 button
   border: none
@@ -27,6 +35,10 @@ button
   padding: 0
   transition: all 0.3s
   cursor: pointer
+  @extend .action
+
+  &:hover
+    transform: scale(1.02)
 
   &.btn
     font-weight: 500
@@ -34,9 +46,6 @@ button
     border-radius: 5px
     margin: 40px 0
     padding: 20px 40px
-
-    &:hover
-        transform: scale(1.01)
 
   &:focus
     outline: none
@@ -50,13 +59,19 @@ input
 
   &:focus
     outline: none
-    transform: scale(1.01)
+    box-shadow: 0 0 15px -5px $default__shadow__color
+    transform: scale(1.02)
+    filter: brightness(1.2)
+
+  &:hover
+    filter: brightness(1.2)
 
   &.input
     font-weight: 500
     margin: 0 0 20px 0
     padding: 20px
     border-radius: 5px
+
 
 
 label
@@ -72,3 +87,13 @@ ul
   margin: 0
   list-style: none
   padding: 0
+
+li
+  transition: all 0.3s
+
+.action
+  cursor: pointer
+
+  &:hover
+    filter: brightness(1.2)
+    transform: scale(1.02)

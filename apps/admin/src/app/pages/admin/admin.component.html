@@ -1,12 +1,12 @@
 
 <section class="admin">
   <nx-header class="admin__header">
-    <nav class="admin__header__navbar">
+    <flex-row class="admin__header__navbar">
       <ng-container *ngIf="canShowBackIcon()">
         <div class="admin__header__navbar__back"><a routerLink="/"><img src="/assets/icons/back.svg" alt="back"/></a></div>
       </ng-container>
-      <div class="admin__header__navbar__user" *ngIf="( user$ | async ) as user"><img class="admin__header__navbar__user__avatar" src="/assets/icons/avatar.svg" alt="avatar"/>
-        <div class="admin__header__navbar__user__dropdown collapse">
+      <div class="admin__header__navbar__user" *ngIf="( user$ | async ) as user"><img class="admin__header__navbar__user__avatar action" src="/assets/icons/avatar.svg" alt="avatar"/>
+        <flex-col class="admin__header__navbar__user__dropdown collapse">
           <ul class="admin__header__navbar__user__dropdown__profile">
             <li>
               <h3>Organization:</h3>
@@ -21,9 +21,9 @@
               <button (click)="onLogout()"><img src="/assets/icons/logout.svg" alt="logout"/></button>
             </li>
           </ul>
-        </div>
+        </flex-col>
       </div>
-    </nav>
+    </flex-row>
   </nx-header>
   <flex-row class="admin__container">
     <nx-content class="admin__container__content">

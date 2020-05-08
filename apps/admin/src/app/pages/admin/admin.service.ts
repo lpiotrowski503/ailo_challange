@@ -8,7 +8,9 @@ import {
   IGetMerchantsResponse,
   IGetMerchantResponse,
   IUpdateMerchantPasswordResponse,
-  IUpdateMerchantPasswordPayload
+  IUpdateMerchantPasswordPayload,
+  ICreateMerchantPayload,
+  IUpdateMerchantPayload
 } from './admin.interface';
 
 @Injectable({
@@ -25,7 +27,9 @@ export class AdminService {
     return this.http.get<IGetUserResponse>(this.getEndPoint('user'));
   }
 
-  public createMerchant(payload: any): Observable<ICreateMerchantResponse> {
+  public createMerchant(
+    payload: ICreateMerchantPayload
+  ): Observable<ICreateMerchantResponse> {
     return this.http.post<ICreateMerchantResponse>(
       this.getEndPoint('merchants'),
       payload
@@ -42,7 +46,10 @@ export class AdminService {
     );
   }
 
-  public updateMerchant(id: string, payload: any): Observable<null> {
+  public updateMerchant(
+    id: string,
+    payload: IUpdateMerchantPayload
+  ): Observable<null> {
     return this.http.put<null>(
       `${this.getEndPoint('merchants')}/${id}`,
       payload

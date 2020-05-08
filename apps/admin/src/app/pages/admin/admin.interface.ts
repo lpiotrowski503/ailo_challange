@@ -1,4 +1,4 @@
-export interface ILogin {
+export interface ILoginPayload {
   email: string;
   password: string;
 }
@@ -8,24 +8,30 @@ export interface ILoginResponse {
 }
 
 export interface IGetUserResponse {
-  id: string,
-  email: string,
+  id: string;
+  email: string;
   manager: {
-    id: string,
-    organization: string
-  }
+    id: string;
+    organization: string;
+  };
+}
+
+export interface ICreateMerchantPayload {
+  name: string;
+  phone: string;
+  email: string;
 }
 
 export interface ICreateMerchantResponse {
-  id: string,
-  password: string
+  id: string;
+  password: string;
 }
 
 export interface IMerchant {
-  id: string,
-  name: string,
-  phone: string,
-  email: string
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
 }
 
 export interface IGetMerchantsResponse {
@@ -34,14 +40,19 @@ export interface IGetMerchantsResponse {
 }
 
 export interface IGetMerchantResponse {
-  id: string,
-  name: string,
-  phone: string,
+  id: string;
+  name: string;
+  phone: string;
   user: {
-    id: string,
-    email: string
+    id: string;
+    email: string;
+  };
+}
 
-  }
+export interface IUpdateMerchantPayload {
+  name: string;
+  phone: string;
+  email: string;
 }
 
 export interface IUpdateMerchantPasswordPayload {
@@ -49,5 +60,5 @@ export interface IUpdateMerchantPasswordPayload {
 }
 
 // tslint:disable-next-line:no-empty-interface
-export interface IUpdateMerchantPasswordResponse extends IUpdateMerchantPasswordPayload {
-}
+export interface IUpdateMerchantPasswordResponse
+  extends IUpdateMerchantPasswordPayload {}

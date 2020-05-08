@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { AdminService } from '../../admin.service';
-import { EventBusService } from 'src/app/core/services/event-bus.service';
+import { EventBusService } from '@core/services/event-bus.service';
+import { patterns } from '@utils/utils';
 
 @Component({
   selector: 'nx-add',
@@ -9,14 +10,10 @@ import { EventBusService } from 'src/app/core/services/event-bus.service';
   styleUrls: ['./add.component.sass']
 })
 export class AddComponent implements OnInit {
-  private _patterns = {
-    email: /^([a-z\d.-_]+)@([a-z\d-_]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
-  };
-
   public controls = {
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [
-      Validators.pattern(this._patterns.email),
+      Validators.pattern(patterns.email),
       Validators.required
     ]),
     phone: new FormControl('', [Validators.required])
