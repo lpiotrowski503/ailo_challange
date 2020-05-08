@@ -152,38 +152,6 @@
           "style": "sass"
         }
       }
-    },
-    "rx-form": {
-      "projectType": "library",
-      "root": "libs/rx-form",
-      "sourceRoot": "libs/rx-form/src",
-      "prefix": "nx",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/rx-form/tsconfig.lib.json",
-              "libs/rx-form/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/rx-form/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/rx-form/jest.config.js",
-            "tsConfig": "libs/rx-form/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/rx-form/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
     }
   },
   "cli": {
