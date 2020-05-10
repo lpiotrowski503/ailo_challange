@@ -1,0 +1,5 @@
+
+<section class="popup" *ngIf="data.display" [ngClass]="data.type">
+  <p class="popup__message">{{ data.message }}</p>
+  <button class="popup__accept" *ngIf="!data.timeOut" (click)="onClose()">Ok</button>
+</section>

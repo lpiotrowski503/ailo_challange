@@ -4,6 +4,7 @@ import { AdminService } from '../../admin.service';
 import { EventBusService } from '@core/services/event-bus.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { patterns } from '@utils/utils';
+import { messages } from '@core/config/messages';
 
 @Component({
   selector: 'nx-edit',
@@ -19,10 +20,9 @@ export class EditComponent implements OnInit {
     ]),
     phone: new FormControl('', [Validators.required])
   };
-
   public id: string;
-
   public editForm: FormGroup = new FormGroup(this.controls);
+  private _messages = messages;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,8 +46,14 @@ export class EditComponent implements OnInit {
   public onEdit(): void {
     this.admin.updateMerchant(this.id, this.editForm.value).subscribe(() => {
       this.eventBus.emit({
-        chanel: 'update list'
+        chanel: 'success',
+        value: this._messages.success.edit
       });
+      setTimeout(() => {
+        this.eventBus.emit({
+          chanel: 'update list'
+        });
+      }, 2000);
     });
   }
 }

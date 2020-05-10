@@ -4,6 +4,8 @@ import { AdminService } from './admin.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { IGetUserResponse } from './admin.interface';
+import { messages } from '@core/config/messages';
+import { EventBusService } from '@core/services/event-bus.service';
 
 @Component({
   selector: 'nx-admin',
@@ -12,11 +14,13 @@ import { IGetUserResponse } from './admin.interface';
 })
 export class AdminComponent implements OnInit {
   public user$: Observable<IGetUserResponse>;
+  private _messages = messages;
 
   constructor(
     private admin: AdminService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private eventBus: EventBusService
   ) {}
 
   ngOnInit(): void {
@@ -24,7 +28,13 @@ export class AdminComponent implements OnInit {
   }
 
   public onLogout(): void {
-    this.auth.logout();
+    this.eventBus.emit({
+      chanel: 'success',
+      value: this._messages.success.logout
+    });
+    setTimeout(() => {
+      this.auth.logout();
+    }, 2000);
   }
 
   public canShowBackIcon(): boolean {

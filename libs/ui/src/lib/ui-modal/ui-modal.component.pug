@@ -1,0 +1,10 @@
+ng-container(
+  *ngIf = '( modal$ | async ) as modal'
+  )
+  section.modal(
+    *ngIf = 'modal.display'
+    )
+    ui-popup.blur(
+      [data] = 'modal',
+      (event) = 'onPopup($event)'
+    )

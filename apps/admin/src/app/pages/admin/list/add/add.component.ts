@@ -3,6 +3,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { AdminService } from '../../admin.service';
 import { EventBusService } from '@core/services/event-bus.service';
 import { patterns } from '@utils/utils';
+import { messages } from '@core/config/messages';
 
 @Component({
   selector: 'nx-add',
@@ -18,8 +19,8 @@ export class AddComponent implements OnInit {
     ]),
     phone: new FormControl('', [Validators.required])
   };
-
   public addForm: FormGroup = new FormGroup(this.controls);
+  private _messages = messages;
 
   constructor(private admin: AdminService, private eventBus: EventBusService) {}
 
@@ -28,8 +29,14 @@ export class AddComponent implements OnInit {
   public onAdd(): void {
     this.admin.createMerchant(this.addForm.value).subscribe(() => {
       this.eventBus.emit({
-        chanel: 'update list'
+        chanel: 'success',
+        value: this._messages.success.add
       });
+      setTimeout(() => {
+        this.eventBus.emit({
+          chanel: 'update list'
+        });
+      }, 2000);
     });
   }
 }

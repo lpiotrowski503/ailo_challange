@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventBusService } from '@core/services/event-bus.service';
 import { Router } from '@angular/router';
 import { IGetMerchantsResponse } from '../admin.interface';
+import { messages } from '@core/config/messages';
 
 @Component({
   selector: 'nx-list',
@@ -12,6 +13,7 @@ import { IGetMerchantsResponse } from '../admin.interface';
 })
 export class ListComponent implements OnInit {
   public merchants$: Observable<IGetMerchantsResponse>;
+  private _messages = messages;
 
   constructor(
     private admin: AdminService,
@@ -29,8 +31,14 @@ export class ListComponent implements OnInit {
 
   public onRemove(id: string): void {
     this.admin.deleteMerchant(id).subscribe(() => {
-      this.merchants$ = this.admin.getMerchants();
-      this.router.navigate(['/']);
+      this.eventBus.emit({
+        chanel: 'success',
+        value: this._messages.success.delete
+      });
+      setTimeout(() => {
+        this.merchants$ = this.admin.getMerchants();
+        this.router.navigate(['/']);
+      }, 2000);
     });
   }
 }

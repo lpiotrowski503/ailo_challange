@@ -1,0 +1,6 @@
+
+<ng-container *ngIf="( modal$ | async ) as modal">
+  <section class="modal" *ngIf="modal.display">
+    <ui-popup class="blur" [data]="modal" (event)="onPopup($event)"></ui-popup>
+  </section>
+</ng-container>

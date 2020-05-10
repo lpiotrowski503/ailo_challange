@@ -1,0 +1,11 @@
+section.popup(
+  *ngIf = 'data.display',
+  [ngClass] = 'data.type'
+  )
+  p.popup__message
+    |{{ data.message }}
+  button.popup__accept(
+    *ngIf = '!data.timeOut',
+    (click) = 'onClose()'
+    )
+    |Ok

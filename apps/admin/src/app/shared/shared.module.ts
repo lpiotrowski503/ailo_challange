@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { UiModule } from '@libs/ui/src/lib/ui.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from '@core/core.module';
 
-const modules = [CommonModule, ReactiveFormsModule, UiModule];
+const modules = [CommonModule, CoreModule, ReactiveFormsModule, UiModule];
 
 @NgModule({
   declarations: [],
