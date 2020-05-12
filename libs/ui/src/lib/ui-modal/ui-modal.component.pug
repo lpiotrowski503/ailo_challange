@@ -1,8 +1,10 @@
+doctype
 ng-container(
   *ngIf = '( modal$ | async ) as modal'
   )
   section.modal(
-    *ngIf = 'modal.display'
+    *ngIf = 'modal.display',
+    @opacity
     )
     ui-popup.blur(
       [data] = 'modal',

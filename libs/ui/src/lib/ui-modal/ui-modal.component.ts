@@ -1,3 +1,4 @@
+import { opacity } from './../animations/opacity.animations';
 import { UiService, IUiModalAction } from './../ui.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   // tslint:disable-next-line:component-selector
   selector: 'ui-modal',
   templateUrl: './ui-modal.component.html',
-  styleUrls: ['./ui-modal.component.sass']
+  styleUrls: ['./ui-modal.component.sass'],
+  animations: [opacity]
 })
 export class UiModalComponent implements OnInit {
   public modal$: Observable<IUiModalAction>;
