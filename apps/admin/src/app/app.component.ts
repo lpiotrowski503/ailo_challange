@@ -1,4 +1,4 @@
-import { UiService } from './../../../../libs/ui/src/lib/ui.service';
+import { UiService } from '@libs/ui/src/lib/ui.service';
 import { EventBusService } from '@core/services/event-bus.service';
 import { Component } from '@angular/core';
 

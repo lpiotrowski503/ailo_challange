@@ -1,3 +1,4 @@
+import { LoadMerchants } from './../../store/merchants/merchants.actions';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AdminService } from './admin.service';
@@ -6,6 +7,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { IGetUserResponse } from './admin.interface';
 import { messages } from '@core/config/messages';
 import { EventBusService } from '@core/services/event-bus.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'nx-admin',
@@ -20,11 +23,13 @@ export class AdminComponent implements OnInit {
     private admin: AdminService,
     private auth: AuthService,
     private router: Router,
-    private eventBus: EventBusService
+    private eventBus: EventBusService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
     this.user$ = this.admin.getUser();
+    this.store.dispatch(new LoadMerchants());
   }
 
   public onLogout(): void {

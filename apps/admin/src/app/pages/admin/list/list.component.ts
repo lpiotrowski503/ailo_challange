@@ -5,6 +5,9 @@ import { EventBusService } from '@core/services/event-bus.service';
 import { Router } from '@angular/router';
 import { IGetMerchantsResponse } from '../admin.interface';
 import { messages } from '@core/config/messages';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.state';
+import { LoadMerchants } from 'src/app/store/merchants/merchants.actions';
 
 @Component({
   selector: 'nx-list',
@@ -18,11 +21,12 @@ export class ListComponent implements OnInit {
   constructor(
     private admin: AdminService,
     private router: Router,
-    private eventBus: EventBusService
+    private eventBus: EventBusService,
+    private store: Store<AppState>
   ) {
-    this.merchants$ = this.admin.getMerchants();
+    this.merchants$ = this.store.select('merchants');
     this.eventBus.on('update list').subscribe(() => {
-      this.merchants$ = this.admin.getMerchants();
+      this.store.dispatch(new LoadMerchants());
       this.router.navigate(['/']);
     });
   }
@@ -36,7 +40,7 @@ export class ListComponent implements OnInit {
         value: this._messages.success.delete
       });
       setTimeout(() => {
-        this.merchants$ = this.admin.getMerchants();
+        this.store.dispatch(new LoadMerchants());
         this.router.navigate(['/']);
       }, 2000);
     });
