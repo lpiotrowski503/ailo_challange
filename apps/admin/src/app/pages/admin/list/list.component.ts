@@ -8,11 +8,13 @@ import { messages } from '@core/config/messages';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { LoadMerchants } from 'src/app/store/merchants/merchants.actions';
+import { opacity } from '@core/animations/opacity.animations';
 
 @Component({
   selector: 'nx-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.sass']
+  styleUrls: ['./list.component.sass'],
+  animations: [opacity]
 })
 export class ListComponent implements OnInit {
   public merchants$: Observable<IGetMerchantsResponse>;
@@ -20,18 +22,34 @@ export class ListComponent implements OnInit {
 
   constructor(
     private admin: AdminService,
-    private router: Router,
     private eventBus: EventBusService,
     private store: Store<AppState>
   ) {
     this.merchants$ = this.store.select('merchants');
     this.eventBus.on('update list').subscribe(() => {
       this.store.dispatch(new LoadMerchants());
-      this.router.navigate(['/']);
+      this.eventBus.emit({
+        chanel: 'change_page',
+        value: '/'
+      });
     });
   }
 
   ngOnInit(): void {}
+
+  public onChangePassword(id: string) {
+    this.eventBus.emit({
+      chanel: 'change_page',
+      value: '/change-password/' + id
+    });
+  }
+
+  public onEdit(id: string) {
+    this.eventBus.emit({
+      chanel: 'change_page',
+      value: '/edit/' + id
+    });
+  }
 
   public onRemove(id: string): void {
     this.admin.deleteMerchant(id).subscribe(() => {
@@ -39,10 +57,11 @@ export class ListComponent implements OnInit {
         chanel: 'success',
         value: this._messages.success.delete
       });
-      setTimeout(() => {
-        this.store.dispatch(new LoadMerchants());
-        this.router.navigate(['/']);
-      }, 2000);
+      this.store.dispatch(new LoadMerchants());
+      this.eventBus.emit({
+        chanel: 'change_page',
+        value: '/'
+      });
     });
   }
 }

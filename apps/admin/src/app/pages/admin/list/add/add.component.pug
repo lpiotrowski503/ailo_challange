@@ -1,4 +1,8 @@
-section.add
+doctype
+section.add(
+  *ngIf="display",
+  @slideRight
+  )
   form(
     (ngSubmit) = 'onAdd()',
     [formGroup] = 'addForm'

@@ -1,18 +1,18 @@
-
-<section class="edit">
+<!DOCTYPE html>
+<section class="edit" *ngIf="display" @slideRight>
   <form (ngSubmit)="onEdit()" [formGroup]="editForm">
     <flex-col>
       <flex-col>
         <label class="label">Name</label>
-        <input class="input" type="text" name="name" [formControl]="controls.name"/>
+        <input class="input" type="text" name="name" [formControl]="controls.name">
       </flex-col>
       <flex-col>
         <label class="label">email</label>
-        <input class="input" type="text" name="email" [formControl]="controls.email"/>
+        <input class="input" type="text" name="email" [formControl]="controls.email">
       </flex-col>
       <flex-col>
         <label class="label">phone</label>
-        <input class="input" type="tel" name="phone" [formControl]="controls.phone"/>
+        <input class="input" type="tel" name="phone" [formControl]="controls.phone">
       </flex-col>
       <flex-col>
         <button class="btn">Send</button>

@@ -1,3 +1,4 @@
+doctype
 section.admin
   nx-header.admin__header
     flex-row.admin__header__navbar
@@ -5,8 +6,8 @@ section.admin
         *ngIf = 'canShowBackIcon()'
         )
         div.admin__header__navbar__back
-          a(
-            routerLink = '/'
+          button(
+            (click)="onBack()"
             )
             img(
               src = '/assets/icons/back.svg',

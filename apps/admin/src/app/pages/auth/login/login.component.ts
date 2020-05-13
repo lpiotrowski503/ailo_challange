@@ -1,17 +1,19 @@
 import { messages } from '@core/config/messages';
 import { EventBusService } from '@core/services/event-bus.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Router } from '@angular/router';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { patterns } from '@utils/utils';
+import { RoutingService } from '@core/services/routing.service';
+import { opacity } from '@core/animations/opacity.animations';
 
 @Component({
   selector: 'nx-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.sass']
+  styleUrls: ['./login.component.sass'],
+  animations: [opacity]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public controls = {
     email: new FormControl('', [
       Validators.pattern(patterns.email),
@@ -24,15 +26,24 @@ export class LoginComponent {
   };
 
   public loginForm = new FormGroup(this.controls);
-
   private _messages = messages;
+  public display = true;
 
   constructor(
     private auth: AuthService,
-    private router: Router,
-    private eventBus: EventBusService
+    private eventBus: EventBusService,
+    private routing: RoutingService
   ) {
-    if (this.auth.getToken()) this.router.navigate(['/']);
+    if (this.auth.getToken()) {
+      this.eventBus.emit({
+        chanel: 'change_page',
+        value: '/'
+      });
+    }
+  }
+
+  ngOnInit() {
+    this.routing.changePage.subscribe(state => (this.display = !state));
   }
 
   public onLogin(): void {
@@ -42,9 +53,10 @@ export class LoginComponent {
         chanel: 'success',
         value: this._messages.success.login
       });
-      setTimeout(() => {
-        this.router.navigate(['/']);
-      }, 2000);
+      this.eventBus.emit({
+        chanel: 'change_page',
+        value: '/'
+      });
     });
   }
 }

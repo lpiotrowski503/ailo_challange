@@ -5,11 +5,14 @@ import { EventBusService } from '@core/services/event-bus.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { patterns } from '@utils/utils';
 import { messages } from '@core/config/messages';
+import { RoutingService } from '@core/services/routing.service';
+import { slideRight } from '@core/animations/slide-right.animations';
 
 @Component({
   selector: 'nx-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.sass']
+  styleUrls: ['./edit.component.sass'],
+  animations: [slideRight]
 })
 export class EditComponent implements OnInit {
   public controls = {
@@ -23,11 +26,13 @@ export class EditComponent implements OnInit {
   public id: string;
   public editForm: FormGroup = new FormGroup(this.controls);
   private _messages = messages;
+  public display = true;
 
   constructor(
     private route: ActivatedRoute,
     private admin: AdminService,
-    private eventBus: EventBusService
+    private eventBus: EventBusService,
+    private routing: RoutingService
   ) {}
 
   ngOnInit(): void {
@@ -41,19 +46,19 @@ export class EditComponent implements OnInit {
         });
       });
     });
+    this.routing.changePage.subscribe(state => (this.display = !state));
   }
 
   public onEdit(): void {
     this.admin.updateMerchant(this.id, this.editForm.value).subscribe(() => {
+      this.display = false;
       this.eventBus.emit({
         chanel: 'success',
         value: this._messages.success.edit
       });
-      setTimeout(() => {
-        this.eventBus.emit({
-          chanel: 'update list'
-        });
-      }, 2000);
+      this.eventBus.emit({
+        chanel: 'update list'
+      });
     });
   }
 }

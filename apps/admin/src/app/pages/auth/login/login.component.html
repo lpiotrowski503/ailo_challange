@@ -1,5 +1,5 @@
-
-<flex-row class="login">
+<!DOCTYPE html>
+<flex-row class="login" *ngIf="display" @opacity>
   <flex-row class="login__header">
     <h2>Log<span>in</span></h2>
   </flex-row>
@@ -8,11 +8,11 @@
       <flex-col>
         <flex-col>
           <label class="label">E-mail</label>
-          <input class="input" type="text" name="email" [formControl]="controls.email"/>
+          <input class="input" type="text" name="email" [formControl]="controls.email">
         </flex-col>
         <flex-col>
           <label class="label">Password</label>
-          <input class="input" type="password" name="password" [formControl]="controls.password"/>
+          <input class="input" type="password" name="password" [formControl]="controls.password">
         </flex-col>
         <flex-col>
           <button class="btn">login</button>

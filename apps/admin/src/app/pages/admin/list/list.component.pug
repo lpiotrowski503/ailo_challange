@@ -30,7 +30,9 @@ flex-row.list
             ng-container(
               *ngFor = 'let merchant of merchants'
               )
-              li.action
+              li.action(
+                @opacity
+                )
                 flex-row.flex-y-center
                   p
                     |{{ merchant.name }}
@@ -39,15 +41,15 @@ flex-row.list
                   p
                     |{{ merchant.phone }}
                   flex-row.actions
-                    a(
-                      routerLink = `{{'/change-password/' + merchant.id }}`
+                    button(
+                      (click)="onChangePassword(merchant.id)"
                       )
                       img(
                         src = '/assets/icons/change.svg',
                         alt = 'change password'
                         )
-                    a(
-                      routerLink = `{{'/edit/' + merchant.id }}`
+                    button(
+                      (click)="onEdit(merchant.id)"
                       )
                       img(
                         src = '/assets/icons/edit.svg',

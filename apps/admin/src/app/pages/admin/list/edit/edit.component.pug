@@ -1,4 +1,8 @@
-section.edit
+doctype
+section.edit(
+  *ngIf="display",
+  @slideRight
+  )
   form(
     (ngSubmit) = 'onEdit()',
     [formGroup] = 'editForm'
