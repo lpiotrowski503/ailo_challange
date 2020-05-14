@@ -1,11 +1,12 @@
-import { RoutingService } from './../../../../core/services/routing.service';
+import { RoutingService } from '@core/services/routing.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { AdminService } from '../../admin.service';
-import { EventBusService } from '@core/services/event-bus.service';
 import { patterns } from '@utils/utils';
 import { messages } from '@core/config/messages';
 import { slideRight } from '@core/animations/slide-right.animations';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.state';
+import { AddMerchant } from 'src/app/store/merchants/merchants.actions';
 
 @Component({
   selector: 'nx-add',
@@ -23,13 +24,11 @@ export class AddComponent implements OnInit {
     phone: new FormControl('', [Validators.required])
   };
   public addForm: FormGroup = new FormGroup(this.controls);
-  private _messages = messages;
   public display = true;
 
   constructor(
-    private admin: AdminService,
-    private eventBus: EventBusService,
-    private routing: RoutingService
+    private routing: RoutingService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
@@ -37,15 +36,6 @@ export class AddComponent implements OnInit {
   }
 
   public onAdd(): void {
-    this.admin.createMerchant(this.addForm.value).subscribe(() => {
-      this.display = false;
-      this.eventBus.emit({
-        chanel: 'success',
-        value: this._messages.success.add
-      });
-      this.eventBus.emit({
-        chanel: 'update list'
-      });
-    });
+    this.store.dispatch(new AddMerchant(this.addForm.value));
   }
 }

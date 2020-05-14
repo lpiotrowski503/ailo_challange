@@ -1,12 +1,14 @@
+import { EditMerchant } from './../../../../store/merchants/merchants.actions';
+import { AppState } from './../../../../store/app.state';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from '../../admin.service';
 import { EventBusService } from '@core/services/event-bus.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { patterns } from '@utils/utils';
-import { messages } from '@core/config/messages';
 import { RoutingService } from '@core/services/routing.service';
 import { slideRight } from '@core/animations/slide-right.animations';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'nx-edit',
@@ -25,14 +27,13 @@ export class EditComponent implements OnInit {
   };
   public id: string;
   public editForm: FormGroup = new FormGroup(this.controls);
-  private _messages = messages;
   public display = true;
 
   constructor(
     private route: ActivatedRoute,
     private admin: AdminService,
-    private eventBus: EventBusService,
-    private routing: RoutingService
+    private routing: RoutingService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
@@ -50,15 +51,6 @@ export class EditComponent implements OnInit {
   }
 
   public onEdit(): void {
-    this.admin.updateMerchant(this.id, this.editForm.value).subscribe(() => {
-      this.display = false;
-      this.eventBus.emit({
-        chanel: 'success',
-        value: this._messages.success.edit
-      });
-      this.eventBus.emit({
-        chanel: 'update list'
-      });
-    });
+    this.store.dispatch(new EditMerchant(this.id, this.editForm.value));
   }
 }

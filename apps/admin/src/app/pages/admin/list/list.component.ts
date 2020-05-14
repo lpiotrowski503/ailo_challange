@@ -1,10 +1,8 @@
-import { AdminService } from './../admin.service';
+import { DeleteMerchant } from './../../../store/merchants/merchants.actions';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { EventBusService } from '@core/services/event-bus.service';
-import { Router } from '@angular/router';
 import { IGetMerchantsResponse } from '../admin.interface';
-import { messages } from '@core/config/messages';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { LoadMerchants } from 'src/app/store/merchants/merchants.actions';
@@ -18,10 +16,8 @@ import { opacity } from '@core/animations/opacity.animations';
 })
 export class ListComponent implements OnInit {
   public merchants$: Observable<IGetMerchantsResponse>;
-  private _messages = messages;
 
   constructor(
-    private admin: AdminService,
     private eventBus: EventBusService,
     private store: Store<AppState>
   ) {
@@ -52,16 +48,6 @@ export class ListComponent implements OnInit {
   }
 
   public onRemove(id: string): void {
-    this.admin.deleteMerchant(id).subscribe(() => {
-      this.eventBus.emit({
-        chanel: 'success',
-        value: this._messages.success.delete
-      });
-      this.store.dispatch(new LoadMerchants());
-      this.eventBus.emit({
-        chanel: 'change_page',
-        value: '/'
-      });
-    });
+    this.store.dispatch(new DeleteMerchant(id));
   }
 }
